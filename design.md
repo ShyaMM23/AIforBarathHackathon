@@ -1,85 +1,127 @@
-# Requirements Document
+# System Design Document
 
-## 1. Project Title
-AI-Powered Community Assistance System
+## 1. System Overview
 
-## 2. Problem Statement
-Many communities lack easy access to digital services for public information, government schemes, and essential services. Language barriers, low technical literacy, and limited connectivity create major challenges.
-
-This system aims to provide an AI-powered assistant that improves access to public services, information, and support for underserved communities.
+The AI-Powered Community Assistance System provides intelligent support using NLP and computer vision to assist users in accessing public services.
 
 ---
 
-## 3. Objectives
-- Provide easy access to public service information.
-- Support multilingual interaction (regional Indian languages).
-- Enable text and image-based queries.
-- Ensure accessibility for low-tech users.
-- Deliver fast and reliable responses.
+## 2. High-Level Architecture
+
+User → Frontend → Backend API → AI Model → Database → Response → User
 
 ---
 
-## 4. Functional Requirements
+## 3. Components
 
-### 4.1 User Features
-- Users can submit text queries.
-- Users can upload image-based queries (documents, receipts, forms).
-- AI generates relevant responses.
-- Multilingual input and output support.
-- Simple, user-friendly interface.
+### 3.1 Frontend
+- Web or Mobile Interface
+- Built using:
+  - HTML, CSS, JavaScript / React
+- Features:
+  - Text input
+  - Image upload
+  - Language selection
+  - Response display
 
-### 4.2 Admin Features
-- Admin can monitor submissions.
-- Admin can view analytics.
-- Admin can update knowledge base.
+### 3.2 Backend
+- REST API (Node.js / Flask / FastAPI)
+- Handles:
+  - User queries
+  - Authentication
+  - Request routing
+  - Logging
 
-### 4.3 AI Capabilities
-- Natural Language Understanding (NLU).
-- Context-aware response generation.
-- Image processing (OCR for documents).
-- Government scheme matching.
-- FAQ answering.
+### 3.3 AI Module
 
----
+#### NLP Module
+- Query classification
+- Intent detection
+- Information retrieval
+- Response generation
 
-## 5. Non-Functional Requirements
+#### Computer Vision Module
+- OCR (Optical Character Recognition)
+- Document analysis
+- Text extraction from uploaded images
 
-### 5.1 Performance
-- Response time < 5 seconds.
-- System must support concurrent users.
+### 3.4 Database
+- Stores:
+  - User queries
+  - Logs
+  - Admin analytics
+  - Knowledge base
 
-### 5.2 Scalability
-- Cloud-based deployment.
-- Horizontal scaling support.
+Database options:
+- MongoDB / PostgreSQL
 
-### 5.3 Security
-- Secure API communication (HTTPS).
-- Data encryption.
-- Role-based access control.
-
-### 5.4 Usability
-- Clean and minimal UI.
-- Accessible for low-tech users.
-- Works on low-end smartphones.
-
----
-
-## 6. Constraints
-- Limited internet connectivity in rural areas.
-- Maximum file upload size: 5 MB (PDF submissions).
-- Cost constraints for cloud deployment.
+### 3.5 Cloud Infrastructure
+- AWS / Azure / GCP
+- Load balancer
+- Secure API gateway
 
 ---
 
-## 7. Assumptions
-- Users have access to smartphones.
-- Backend AI model is pre-trained or API-based.
-- Public scheme data is available for integration.
+## 4. Data Flow
+
+1. User submits text/image input.
+2. Frontend sends data to backend API.
+3. Backend processes input.
+4. AI model generates response.
+5. Response is returned to user.
+6. Logs stored in database.
 
 ---
 
-## 8. Future Enhancements
-- Voice-based interaction.
-- Offline mode support.
-- Regional language expansion.
-- Integration with government APIs.
+## 5. Security Design
+
+- HTTPS communication.
+- JWT-based authentication.
+- Encrypted storage.
+- Input validation and sanitization.
+
+---
+
+## 6. Scalability Design
+
+- Stateless backend.
+- Containerized deployment (Docker).
+- Auto-scaling cloud infrastructure.
+
+---
+
+## 7. Technology Stack
+
+Frontend:
+- React / HTML + CSS
+
+Backend:
+- Python (FastAPI) or Node.js
+
+AI:
+- LLM API / Open-source model
+- OCR engine
+
+Database:
+- MongoDB / PostgreSQL
+
+Cloud:
+- AWS / Azure
+
+---
+
+## 8. Deployment Plan
+
+1. Develop locally.
+2. Containerize using Docker.
+3. Deploy backend to cloud.
+4. Connect to cloud database.
+5. Monitor logs and performance.
+
+---
+
+## 9. Monitoring & Logging
+
+- Cloud monitoring dashboard.
+- Error tracking.
+- User activity metrics.
